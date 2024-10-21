@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pasta Recipes</title>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<body>
+  <h1>La Trattoria di Pasta 🍝</h1>
+  <form action="/recipe" method="POST" class="buttons">
+  <button type="submit" value="bolognese" name="choice">🍝 </button>
+  <button type="submit" value="arrabbiata" name="choice">🌶️</button>
+  <button type="submit" value="alfredo" name="choice">🧈 </button>
+  <button type="submit" value="pesto" name="choice">🌿 </button>
+  </form>
+  <div id="recipeContainer" class="hidden">
+
+    <%if (locals.recipe) {%>
+
+      <h2 id="recipeTitle">
+        <%= recipe.name %>
+      </h2>
+
+      <h3>Ingredients:</h3>
+      <ul id="ingredientsList">
+        <li>
+          <%= recipe.ingredients.pasta.name %>, <%= recipe.ingredients.pasta.preparation %>
+        </li>
+        <li>
+          <%= recipe.ingredients.sauce.name %>, <%= recipe.ingredients.sauce.preparation %>
+        </li>
+        <% recipe.ingredients.toppings.forEach(topping=> { %>
+          <li>
+            <%= topping.quantity %> of <%= topping.name %>
+          </li>
+          <% }) %>
+      </ul>
+
+      <%} else {%>
+        <h2>Pick your favourite pasta dish 👆</h2>
+        <%}%>
+  </div>
+</body>
+
+</html>
